@@ -27,3 +27,4 @@ Made by Jacob Hanson
 Note: All commands that need to be run from the terminal in the root directory.
 
 ### Walkthrough Video
+https://user-images.githubusercontent.com/89164466/143659968-53ee7486-4192-4557-a356-294456a18b6e.mp4
