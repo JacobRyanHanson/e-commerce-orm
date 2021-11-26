@@ -13,17 +13,37 @@ router.get('/', (req, res) => {
                 as: 'tags'
             }
 		]
-		
 	}).then(data => res.json(data)).catch(err => {
 		console.log(err);
 		res.status(500).json(err);
 	});
 });
 
-// get one product
 router.get('/:id', (req, res) => {
-	// find a single product by its `id`
-	// be sure to include its associated Category and Tag data
+	Product.findOne({
+        where: {
+            id: req.params.id
+        },
+        include: [
+			{
+				model: Category
+			},
+			{
+                model: Tag,
+                through: ProductTag,
+                as: 'tags'
+            }
+		]
+    }).then(data => {
+        if (!data) {
+            res.status(404).json({ message: 'No product found with this id' });
+            return;
+        }
+        res.json(data);
+    }).catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+    });
 });
 
 // create new product
